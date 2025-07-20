@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -20,9 +22,19 @@ public class JwtService {
     private String secret;
 
     public String generateToken(UserDetails userDetails) {
+        List<Map<String, String>> roles = userDetails.getAuthorities().stream()
+                .map(auth -> {
+                    String authority = auth.getAuthority();
+                    if (!authority.startsWith("ROLE_")) {
+                        authority = "ROLE_" + authority;
+                    }
+                    return Map.of("authority", authority);
+                })
+                .toList();
+
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
-                .claim("roles", userDetails.getAuthorities())
+                .claim("roles", roles)
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)))
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes()), SignatureAlgorithm.HS256)

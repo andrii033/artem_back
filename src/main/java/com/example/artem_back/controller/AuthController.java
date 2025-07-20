@@ -1,5 +1,7 @@
 package com.example.artem_back.controller;
 
+import com.example.artem_back.dto.AuthenticationRequest;
+import com.example.artem_back.dto.AuthenticationResponse;
 import com.example.artem_back.dto.RegistrerRequest;
 import com.example.artem_back.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +20,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegistrerRequest registrerRequest) {
-        userService.registerUser(registrerRequest);
-        return ResponseEntity.ok("User registered successfully");
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegistrerRequest registrerRequest) {
+        return ResponseEntity.ok(userService.registerUser(registrerRequest));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
+        return ResponseEntity.ok(userService.login(authenticationRequest));
     }
 }

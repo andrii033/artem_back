@@ -1,7 +1,9 @@
 package com.example.artem_back.config;
 
+import com.example.artem_back.security.JwtAuthFilter;
 import com.example.artem_back.service.AppUserDetailsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,18 +22,23 @@ public class SecurityConfig {
 
     private final AppUserDetailsService appUserDetailsService;
 
+    @Autowired
+    private JwtAuthFilter jwtAuthFilter;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**","/auth/**") // отключаем CSRF только для H2 Console
+                        .ignoringRequestMatchers("/auth/**") // отключаем CSRF только для H2 Console
                 )
                 .headers(headers -> headers
                         .frameOptions(frame -> frame.disable()) // разрешаем <iframe>
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/h2-console/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())
