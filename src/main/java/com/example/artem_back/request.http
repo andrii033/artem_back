@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###admin
 GET http://localhost:8080/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTMyODE1NzksImV4cCI6MTc1MzM2Nzk3OX0.jgPSNV-0WAMlGeYaTKwXBBInV2WUr2YRWADhFhgr1ZE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTMyODI0MjQsImV4cCI6MTc1MzM2ODgyNH0.CvzXwFK9nFk9CciTWh4boomuQ74IFL1bSKPK8fjLKBs
 Content-Type: application/json
 
 {
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ###users
 GET http://localhost:8080/admin/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTMyODE1NzksImV4cCI6MTc1MzM2Nzk3OX0.jgPSNV-0WAMlGeYaTKwXBBInV2WUr2YRWADhFhgr1ZE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTMyODI0MjQsImV4cCI6MTc1MzM2ODgyNH0.CvzXwFK9nFk9CciTWh4boomuQ74IFL1bSKPK8fjLKBs
 Content-Type: application/json
 
 {
