@@ -1,8 +1,46 @@
-### registration
-POST http://localhost:8080/auth/register
+###register artem
+POST http://localhost:8080/admin/register
 Content-Type: application/json
 
 {
   "username": "user",
-  "password": "pass"
+  "password": "user"
+}
+
+
+### login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+
+###admin
+GET http://localhost:8080/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTMyODE1NzksImV4cCI6MTc1MzM2Nzk3OX0.jgPSNV-0WAMlGeYaTKwXBBInV2WUr2YRWADhFhgr1ZE
+Content-Type: application/json
+
+{
+
+}
+
+###users
+GET http://localhost:8080/admin/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTMyODE1NzksImV4cCI6MTc1MzM2Nzk3OX0.jgPSNV-0WAMlGeYaTKwXBBInV2WUr2YRWADhFhgr1ZE
+Content-Type: application/json
+
+{
+
+}
+
+###user
+GET http://localhost:8080/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwiaWF0IjoxNzUyOTk4MTUwLCJleHAiOjE3NTMwODQ1NTB9.VJ26xmS2pvysVqZ7UsCvMML-rzhQxCGTH_291aIqp9Y
+Content-Type: application/json
+
+{
+
 }

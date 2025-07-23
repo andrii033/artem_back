@@ -19,10 +19,6 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegistrerRequest registrerRequest) {
-        return ResponseEntity.ok(userService.registerUser(registrerRequest));
-    }
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {

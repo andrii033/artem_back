@@ -45,4 +45,8 @@ public class UserService {
         String token = jwtService.generateToken(new AppUserDetails(userEntity));
         return new AuthenticationResponse(token);
     }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 }
