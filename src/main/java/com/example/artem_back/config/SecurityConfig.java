@@ -35,7 +35,7 @@ public class SecurityConfig {
         return http
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/auth/**") // отключаем CSRF только для H2 Console
+                        .ignoringRequestMatchers("/auth/**","/admin/**") // отключаем CSRF только для H2 Console
                 )
                 .headers(headers -> headers
                         .frameOptions(frame -> frame.disable()) // разрешаем <iframe>
@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/admin/**","/admin/users").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )

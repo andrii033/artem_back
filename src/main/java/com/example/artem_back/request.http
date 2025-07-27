@@ -1,14 +1,6 @@
-###register artem
-POST http://localhost:8080/admin/register
-Content-Type: application/json
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTM2MTE4MTMsImV4cCI6MTc1MzY5ODIxM30.g54cnMSl0R5InUpkQBaVj-fkggKsTsHof4Zx8QV_AtI
 
-{
-  "username": "user",
-  "password": "user"
-}
-
-
-### login
+###login
 POST http://localhost:8080/auth/login
 Content-Type: application/json
 
@@ -17,10 +9,19 @@ Content-Type: application/json
   "password": "admin"
 }
 
+###register artem
+POST http://localhost:8080/admin/register
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "user"
+}
 
 ###admin
 GET http://localhost:8080/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTMyODI0MjQsImV4cCI6MTc1MzM2ODgyNH0.CvzXwFK9nFk9CciTWh4boomuQ74IFL1bSKPK8fjLKBs
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -29,7 +30,7 @@ Content-Type: application/json
 
 ###users
 GET http://localhost:8080/admin/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTMyODI0MjQsImV4cCI6MTc1MzM2ODgyNH0.CvzXwFK9nFk9CciTWh4boomuQ74IFL1bSKPK8fjLKBs
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -38,7 +39,7 @@ Content-Type: application/json
 
 ###user
 GET http://localhost:8080/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwiaWF0IjoxNzUyOTk4MTUwLCJleHAiOjE3NTMwODQ1NTB9.VJ26xmS2pvysVqZ7UsCvMML-rzhQxCGTH_291aIqp9Y
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {

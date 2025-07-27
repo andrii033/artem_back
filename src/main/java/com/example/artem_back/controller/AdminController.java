@@ -4,12 +4,13 @@ import com.example.artem_back.dto.AuthenticationResponse;
 import com.example.artem_back.dto.RegistrerRequest;
 import com.example.artem_back.dto.UserDto;
 import com.example.artem_back.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -35,6 +36,7 @@ public class AdminController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegistrerRequest registrerRequest) {
+        log.info("RegistrerRequest: {}", registrerRequest);
         return ResponseEntity.ok(userService.registerUser(registrerRequest));
     }
 }
