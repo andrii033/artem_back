@@ -2,7 +2,6 @@ package com.example.artem_back.service;
 
 import com.example.artem_back.model.User;
 import com.example.artem_back.repository.UserRepository;
-import com.example.artem_back.security.AppUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,9 +23,9 @@ public class AppUserDetailsService implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-        List<SimpleGrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role)) // must start with ROLE_
-                .toList();
+        List<GrantedAuthority> authorities = List.of(
+                new SimpleGrantedAuthority("ROLE_" + user.getRole().name())
+        );
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),

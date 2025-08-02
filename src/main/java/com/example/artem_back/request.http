@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTM2MTE4MTMsImV4cCI6MTc1MzY5ODIxM30.g54cnMSl0R5InUpkQBaVj-fkggKsTsHof4Zx8QV_AtI
+#@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE3NTQxMjI4NjIsImV4cCI6MTc1NDIwOTI2Mn0.Z84_enHWsn6nGiF5MKhyAW-sAzDXPHNAKu1lPo7e4Sk
 
 ###login
 POST http://localhost:8080/auth/login
@@ -9,6 +9,11 @@ Content-Type: application/json
   "password": "admin"
 }
 
+> {%
+    client.global.set("token", response.body.token);
+%}
+
+
 ###register artem
 POST http://localhost:8080/admin/register
 Authorization: Bearer {{token}}
@@ -16,7 +21,8 @@ Content-Type: application/json
 
 {
   "username": "user",
-  "password": "user"
+  "password": "user",
+  "email": "user@email.com"
 }
 
 ###admin

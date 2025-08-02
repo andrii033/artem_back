@@ -3,6 +3,7 @@ package com.example.artem_back.service;
 import com.example.artem_back.dto.AuthenticationRequest;
 import com.example.artem_back.dto.AuthenticationResponse;
 import com.example.artem_back.dto.RegistrerRequest;
+import com.example.artem_back.model.Role;
 import com.example.artem_back.model.User;
 import com.example.artem_back.repository.UserRepository;
 import com.example.artem_back.security.AppUserDetails;
@@ -27,10 +28,22 @@ public class UserService {
     }
 
     public AuthenticationResponse registerUser(RegistrerRequest registrerRequest) {
+        if (userRepository.existsByUsername(registrerRequest.username)) {
+            throw new RuntimeException("User already exists");
+        }
+
         User user = new User();
         user.setUsername(registrerRequest.username);
-        user.setPassword(passwordEncoder.encode(registrerRequest.password));
-        user.setRoles(List.of("USER"));
+        user.setEmail(registrerRequest.email);
+        System.out.println("password: " + registrerRequest.password);
+        if (registrerRequest.password != null) {
+            user.setPassword(passwordEncoder.encode(registrerRequest.password));
+        }
+        if (registrerRequest.role != null && (registrerRequest.role != Role.ADMIN)) {
+            user.setRole(registrerRequest.role);
+        }else {
+            user.setRole(Role.USER);
+        }
 
         userRepository.save(user);
 

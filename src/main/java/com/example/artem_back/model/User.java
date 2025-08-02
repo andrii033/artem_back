@@ -3,8 +3,6 @@ package com.example.artem_back.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
 @Entity
 @Table(name = "users")
 @Data
@@ -16,7 +14,9 @@ public class User {
 
     private String username;
     private String password;
+    private String email;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 }

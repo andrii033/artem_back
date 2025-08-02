@@ -36,7 +36,6 @@ public class AdminController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegistrerRequest registrerRequest) {
-        log.info("RegistrerRequest: {}", registrerRequest);
         return ResponseEntity.ok(userService.registerUser(registrerRequest));
     }
 }
