@@ -48,7 +48,7 @@ public class UserService {
         userRepository.save(user);
 
         String token = jwtService.generateToken(new AppUserDetails(user));
-        return new AuthenticationResponse(token);
+        return new AuthenticationResponse(token, user.getRole());
     }
 
     public AuthenticationResponse login(AuthenticationRequest authenticationRequest) {
@@ -56,7 +56,9 @@ public class UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         String token = jwtService.generateToken(new AppUserDetails(userEntity));
-        return new AuthenticationResponse(token);
+        System.out.println("user Role: " + userEntity.getRole() + "");
+
+        return new AuthenticationResponse(token, userEntity.getRole());
     }
 
     public List<User> getAllUsers() {

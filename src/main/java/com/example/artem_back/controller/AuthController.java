@@ -2,7 +2,6 @@ package com.example.artem_back.controller;
 
 import com.example.artem_back.dto.AuthenticationRequest;
 import com.example.artem_back.dto.AuthenticationResponse;
-import com.example.artem_back.dto.RegistrerRequest;
 import com.example.artem_back.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +17,6 @@ public class AuthController {
     public AuthController(UserService userService) {
         this.userService = userService;
     }
-
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
